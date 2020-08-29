@@ -1,7 +1,7 @@
 ---
-title: New Beginnings
-date: "2015-05-28T22:40:32.169Z"
-description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+title: A Guide Into Programming For Newbies
+date: "2020-08-29T22:40:32.169Z"
+description: If you are seeing this page, I want to believe that you are either new to tech or new to programming, and in need of a guide to help you make a choice of what to learn in other to be what you want to be in the tech world. This article mainly aims to direct you in choosing a path in the case where you don’t know what path to go, and also present you with several options to choose from..
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and
