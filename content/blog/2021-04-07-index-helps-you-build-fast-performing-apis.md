@@ -23,11 +23,11 @@ When we run the above query without an index, the database engine will return th
 
 *Index:*
 
-![](/images/uploads/index-table.png)
+![index or lookup table](/images/uploads/index-table.png "Index")
 
 *Resulting records:*
 
-![](/images/uploads/result-table.png)
+![resulting record](/images/uploads/result-table.png "result")
 
 ### **When To Use Index?**
 
