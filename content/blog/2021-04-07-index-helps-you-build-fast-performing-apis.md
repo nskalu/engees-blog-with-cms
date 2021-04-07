@@ -3,6 +3,8 @@ layout: blog
 title: Index  helps you build fast performing APIs
 date: 2021-04-07T09:44:05.780Z
 ---
+I was opportune to present this topic at engineering a few weeks ago, so I decided to share it on my blog as well. Database indexing is a huge subject, but here I have streamlined it to fit how we can have fast performing APIs with the right indexes.
+
 **What is a Database Index?**
 
 An index is a special lookup table that aids faster table searches, it also aids faster updates and deletes by a database engine.
@@ -13,16 +15,26 @@ As an example, if we have a database table called Products that has 4 columns: I
 
 **Select *  from Products where price = 15000**
 
-When we run the above query without an index, the database engine will return the records for us, right? But what the database engine has done under the hood is scan through 40,000 records and filter out the records that have their Price as 15,000, before returning them to us, This is called a table scan and table scan is bad performance. Imagine that the table has millions of records and the database has to do this table scan, it will take quite some time, and if we are loading this query from our application UI, it will pose a bad user experience because the page that calls the API would delay before it loads the data. With an index on the Price column, the database engine creates another special lookup table where it saves Prices with a row address of each price, such that when we run the above query, the database engine goes to that lookup table and retrieves the row address of that price, then uses the row address to fetch the records from the actual table, If there are 3 records with Price of 15,000, the lookup table will have those 3 records with their unique row addresses, it will start from the first occurrence, and then scan downwards to fetch all row addresses that match the criteria. Let’s illustrate with an example.
+When we run the above query without an index, the database engine will return the records for us, right? But what the database engine has done under the hood is scan through 40,000 records and filter out the records that have their Price as 15,000, before returning them to us, This is called a table scan and table scan is bad performance. Imagine that the table has millions of records and the database has to do this table scan, it will take quite some time, and if we are loading this query from our application UI, it will pose a bad user experience because the page that calls the API would delay before it loads the data. With an index on the Price column, the database engine creates another special lookup table where it saves Prices with a row address of each price, such that when we run the above query, the database engine goes to that lookup table and retrieves the row address of that price, then uses the row address to fetch the records from the actual table, If there are 3 records with Price of 15,000, the lookup table will have those 3 records with their unique row addresses, it will start from the first occurrence, and then scan downwards to fetch all row addresses that match the criteria. Let’s illustrate this example.
+
+*Products Table:*
+
+![products table](/images/uploads/products-table.png "products table")
+
+*Index:*
+
+![](/images/uploads/index-table.png)
+
+*Resulting records:*
+
+![](/images/uploads/result-table.png)
 
 ### **When To Use Index?**
 
 While creating an index, bear in mind that updating a table with indexes takes more time than updating a table without because the indexes also need an update. It's important to only create indexes when it is needed and absolutely necessary. The next question on your mind would be when is it absolutely necessary? The following are some valid reasons to create an index on a column:
 
 1. When the column is queried frequently, by this it means when the column often appears in where clauses, or when the query that this column appears in is run very frequently, then the column should be indexed. 
-
 2. Secondly, if a referential integrity constraint exists on the column, then the column needs an index on it, which means columns that would partake in joins in your query require an index.
-
 3. If a UNIQUE key integrity constraint exists on the column, then the column needs a unique index on it. A unique index is a way of applying a unique key constraint on a column, the database engine would create the special lookup table (index) as well as enforce uniqueness of values in that column.
 
 ### **When To Not Use Index?**
@@ -85,4 +97,4 @@ But it will not benefit the following query.
 
 The reason is that column ordering matters when creating composite indexes, the column that has the least order number must always come first in the *where* clause, it should follow that order to the column with the highest order number, which means that City with column order 2 should come last in the *where*.
 
-Also, with the above, keep in mind that there are different types of indexes applied on columns depending on what you want to achieve such as Clustered and Non-Clustered index, Spatial index, Unique index (I mentioned it in this article), etc.
+Also, with the above, keep in mind that there are different types of indexes applied on columns depending on what you want to achieve such as Clustered and Non-Clustered index, Filtered index, Unique index (I mentioned it in this article), etc.
