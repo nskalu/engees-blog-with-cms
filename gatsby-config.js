@@ -3,10 +3,10 @@ module.exports = {
     title: `Engees-Blog`,
     author: {
       name: `Ngozi Kalu`,
-      summary: `who lives and works in Lagos, Nigeria building useful things.`
+      summary: `is a software engineer and technical writer.`
     },
     description: `My first blog post.`,
-    siteUrl: `https://engees-blog.netlify.app/`,
+    siteUrl: `https://engees.netlify.app/`,
     social: {
       twitter: `nollykalz`
     }
@@ -66,7 +66,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`
+        icon: `content/assets/logo.png`
       }
     },
     `gatsby-plugin-react-helmet`,
