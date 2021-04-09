@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Index  helps you build fast performing APIs
+title: Benefits of indexing in building fast performing APIs
 date: 2021-04-07T09:44:05.780Z
 ---
 I was opportune to present this topic at engineering a few weeks ago, so I decided to share it on my blog as well. Database indexing is a huge subject, but here I have streamlined it to fit how we can have fast performing APIs with the right indexes.

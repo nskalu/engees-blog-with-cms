@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Engees-Blog`,
+    title: `Engees`,
     author: {
       name: `Ngozi Kalu`,
-      summary: `is a software engineer and technical writer.`
+      summary: `a software engineer and technical writer.`
     },
     description: `My first blog post.`,
     siteUrl: `https://engees.netlify.app/`,
