@@ -54,11 +54,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    let slug = createFilePath({ node, getNode, basePath: `pages` })
+    console.log(slug)
+
+    //if (!isNaN(slug.substring(1, 10))) {
+    slug = slug.replace(slug.substring(0, 12), "");
+   // }
+
+    //const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: slug
     })
   }
 }
